@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct DiceView: View {
+    @State private var numberOfPips: Int = 1
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image(systemName: "die.face.\(numberOfPips).fill")
+                .resizable()
+                .frame(maxWidth: 100, maxHeight: 100)
+                .aspectRatio(1, contentMode: .fit)
+                .foregroundStyle(.black, .white)
+            
+            Button("Roll") {
+                withAnimation {
+                    numberOfPips = Int.random(in: 1...6)
+                }
+            }
+            .buttonStyle(.bordered)
+        }
     }
 }
 
